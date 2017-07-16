@@ -27,13 +27,14 @@ public class ImpalaJdbcClient {
 
 	public static void main(String[] args) throws IOException {
 
-		if (args.length != 1) {
+		/*if (args.length != 1) {
 			System.out.println("Syntax: ImpalaJdbcClient \"<SQL_query>\"");
             System.exit(1);
-        }
-        String sqlStatement = args[0];
-                
-        Properties prop = loadConfig();
+        }*/
+        /*String sqlStatement = args[0];*/
+
+        String sqlStatement ="SELECT * from bi_analytics.commodity_base_info where  commodity_no='100250380'";
+                Properties prop = loadConfig();
         connectionUrl = prop.getProperty(CONNECTION_URL_PROPERTY);
         jdbcDriverName = prop.getProperty(JDBC_DRIVER_NAME_PROPERTY);
         
@@ -48,7 +49,8 @@ public class ImpalaJdbcClient {
 
 			Class.forName(jdbcDriverName);
 
-			con = DriverManager.getConnection(connectionUrl);
+            con = DriverManager.getConnection("jdbc:hive2://10.10.10.121:10000/default", "root", "root");
+			//con = DriverManager.getConnection(connectionUrl);
 
 			Statement stmt = con.createStatement();
 
@@ -65,14 +67,17 @@ public class ImpalaJdbcClient {
 			System.out.println("== End Query Results =======================\n\n");
 
 		} catch (SQLException e) {
+			System.out.println(e.toString());
 			e.printStackTrace();
 		} catch (Exception e) {
+			System.out.println(e.toString());
 			e.printStackTrace();
 		} finally {
 			try {
 				con.close();
 			} catch (Exception e) {
 				// swallow
+				System.out.println(e.toString());
 			}
 		}
 	}

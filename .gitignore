@@ -1,0 +1,6 @@
+
+.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_2_2.xml
+*.xml
+.idea/.name
+
+bin

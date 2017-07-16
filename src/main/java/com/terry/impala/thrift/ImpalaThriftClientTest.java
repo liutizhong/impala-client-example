@@ -65,7 +65,7 @@ public class ImpalaThriftClientTest
         if(prop.getProperty(PORT) != null) {
         	port = Integer.valueOf(prop.getProperty(PORT));
         }
-        if(prop.getProperty(PRINCPAL) != null) {
+        /*if(prop.getProperty(PRINCPAL) != null) {
         	String principal = prop.getProperty(PRINCPAL);
         	useKerberos = true;
         	if(!principal.contains("/")) {
@@ -76,7 +76,7 @@ public class ImpalaThriftClientTest
 	        int atIndex = principal.indexOf('@');
 	        protocol = principal.substring(0, index);
 	        serverName = principal.substring(index + 1, atIndex > 0 ? atIndex : principal.length());
-        }
+        }*/
         if(prop.getProperty(TIMEOUT) != null) {
         	timeout = Integer.valueOf(prop.getProperty(TIMEOUT));
         }
